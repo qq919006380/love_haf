@@ -13,6 +13,10 @@
       <Button size="large" type="info" @click="getData">再来一条</Button>
       <div class="me" @click="onEgg">作者：@夏天夏</div>
     </footer>
+
+    <Modal v-model="modal1" title="送给我在意的人(haf)" @on-ok="modal1=true" @on-cancel="modal1=false">
+      <div>如果快乐太难，那么我祝你平安!</div>
+    </Modal>
   </div>
 </template>
 
@@ -21,7 +25,8 @@ export default {
   data() {
     return {
       dataList: [],
-      count: 0
+      count: 0,
+      modal1: false
     };
   },
   created() {
@@ -30,9 +35,8 @@ export default {
   methods: {
     onEgg() {
       this.count++;
-      if (this.count > 15) {
-        alert("恭喜你发现了彩蛋");
-        alert("送给我在意的人haf，希望你")
+      if (this.count > 1) {
+        this.modal1 = true;
         this.count = 0;
       }
     },
@@ -91,6 +95,7 @@ main {
   background: @background_color;
   border-radius: 0.1rem;
   padding: 0.1rem;
+  margin-bottom: 1rem;
   .content {
     font-size: 0.36rem;
   }
